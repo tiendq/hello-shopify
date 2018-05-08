@@ -1,5 +1,7 @@
 # Hello Shopify
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Tiendq/hello-shopify.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.com/Tiendq/hello-shopify.svg?branch=master)](https://travis-ci.com/Tiendq/hello-shopify)
 
 Demo steps to build a Shopify public app, for more detail and documentation visit [Developer resources](https://help.shopify.com/api/getting-started).
