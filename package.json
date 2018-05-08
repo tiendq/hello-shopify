@@ -6,6 +6,7 @@
   "author": "Tien Do <tiendq@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "proxy": "ngrok http 8000",
     "start": "nodemon",
     "test": "echo No test available"
   },
