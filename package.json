@@ -1,0 +1,26 @@
+{
+  "name": "hello-shopify",
+  "version": "1.0.0",
+  "description": "A sample Shopify app with Node.JS",
+  "main": "index.js",
+  "author": "Tien Do <tiendq@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon",
+    "test": "echo No test available"
+  },
+  "dependencies": {
+    "cookie": "^0.3.1",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.6",
+    "nonce": "^1.0.4",
+    "qs": "^6.5.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "unfetch": "^3.0.0",
+    "uuid": "^3.1.0"
+  }
+}
