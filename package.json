@@ -14,7 +14,7 @@
     "cookie": "^0.3.1",
     "cookie-parser": "^1.4.3",
     "debug": "^3.1.0",
-    "dotenv": "^4.0.0",
+    "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
