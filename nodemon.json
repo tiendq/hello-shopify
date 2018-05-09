@@ -1,6 +1,6 @@
 {
   "env": {
-    "DEBUG": "express*",
+    "DEBUG": "express*,app,shopify",
     "NODE_ENV": "development",
     "PORT": 8000
   }
