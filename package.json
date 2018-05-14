@@ -1,6 +1,6 @@
 {
   "name": "hello-shopify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A sample Shopify app with Node.JS",
   "main": "index.js",
   "author": "Tien Do <tiendq@gmail.com>",

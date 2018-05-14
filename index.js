@@ -6,11 +6,12 @@ let uuid = require('uuid/v1');
 let dotenv = require('dotenv').config();
 let debug = require('debug')('app');
 let shopify = require('./shopify');
+let webhooks = require('./webhooks');
 
 const SHOPIFY_API_KEY = process.env.SHOPIFY_API_KEY;
 const SHOPIFY_API_SECRET = process.env.SHOPIFY_API_SECRET;
 const SHOPIFY_APP_SCOPES = 'read_products';
-const NGROK_URL = 'https://0fbc3ece.ngrok.io';
+const NGROK_URL = 'https://343dda84.ngrok.io';
 
 let app = express();
 
@@ -101,6 +102,8 @@ app.get('/approved-oauth', async (request, response) => {
       let accessToken = await shopify.getAccessToken(shop, code, SHOPIFY_API_KEY, SHOPIFY_API_SECRET)
 
       if (accessToken) {
+        let uninstallWebhookUrl = `${NGROK_URL}/webhooks/uninstall`;
+
         request.session.accessToken = accessToken;
         response.status(200).send(`Got an access token ${accessToken}, let's do something with it. Go to ${NGROK_URL}/shopify?shop=${shop} for more detail.`);
       } else {
@@ -113,6 +116,8 @@ app.get('/approved-oauth', async (request, response) => {
     response.status(400).send('Required parameters missing.');
   }
 });
+
+app.use('/webhooks', webhooks);
 
 app.listen(8000, () => {
   debug('Hello Shopify listening on port 8000...');
