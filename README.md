@@ -6,6 +6,13 @@
 
 Demo steps to build a Shopify public app, for more detail and documentation visit [Developer resources](https://help.shopify.com/api/getting-started).
 
+## Features
+- Install and authorize Shopify Embedded app
+- Build user interface with [Shopify Polaris](https://github.com/Shopify/polaris)
+- Handle webhooks
+
+## Setup
+
 1. Register a developer account
 2. Create a development store
 3. Create a public app
