@@ -11,7 +11,7 @@ let webhooks = require('./webhooks');
 const SHOPIFY_API_KEY = process.env.SHOPIFY_API_KEY;
 const SHOPIFY_API_SECRET = process.env.SHOPIFY_API_SECRET;
 const SHOPIFY_APP_SCOPES = 'read_products';
-const NGROK_URL = 'https://343dda84.ngrok.io';
+const NGROK_URL = 'https://60a92d57.ngrok.io';
 
 let app = express();
 
@@ -21,6 +21,13 @@ app.engine('hbs', handlebars({
 }));
 
 app.set('view engine', 'hbs');
+
+let staticOptions = {
+  index: false,
+  maxAge: 1000
+};
+
+app.use('/dist', express.static('dist', staticOptions));
 
 app.use(cookieParser('cookiesecret'));
 
@@ -36,29 +43,17 @@ app.use(session({
   saveUninitialized: true
 }));
 
-// Test install app NGROK_URL/shopify?shop=DEMO_SHOP
+// Test install app NGROK_URL/shopify?shop=demo_shop_name.myshopify.com
 app.get('/shopify', async (request, response) => {
   // Check if app is installed, if app is installed then access token is temporarily
   // stored in session. Remove app from shop admin to install it again.
   if (request.session.accessToken) {
     debug('You are granted access to this shop with token: ' + request.session.accessToken);
 
-    if (request.query.shop) {
-      try {
-        let info = await shopify.requestShopInfo(request.query.shop, request.session.accessToken);
-
-        return response.render('home', {
-          accessToken: request.session.accessToken,
-          info: JSON.stringify(info)
-        });
-      } catch(error) {
-        return response.sendStatus(500);
-      }
-    } else {
-      return response.render('home', {
-        accessToken: request.session.accessToken
-      });
-    }
+    return response.render('home', {
+      apiKey: SHOPIFY_API_KEY,
+      shopOrigin: request.session.shop
+    });
   }
 
   if (!request.query.shop)
@@ -105,7 +100,10 @@ app.get('/approved-oauth', async (request, response) => {
         let uninstallWebhookUrl = `${NGROK_URL}/webhooks/uninstall`;
 
         request.session.accessToken = accessToken;
-        response.status(200).send(`Got an access token ${accessToken}, let's do something with it. Go to ${NGROK_URL}/shopify?shop=${shop} for more detail.`);
+        request.session.shop = shop;
+
+        debug(`Got an access token ${accessToken}`);
+        response.redirect(`/shopify?shop=${shop}`);
       } else {
         response.status(200).send('Access token not found');
       }

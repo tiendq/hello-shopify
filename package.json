@@ -1,16 +1,19 @@
 {
   "name": "hello-shopify",
-  "version": "1.0.1",
-  "description": "A sample Shopify app with Node.JS",
+  "version": "1.0.2",
+  "description": "A sample Shopify app with Polaris and Node.JS",
   "main": "index.js",
   "author": "Tien Do <tiendq@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "build": "webpack --mode=production",
     "proxy": "ngrok http 8000",
     "start": "nodemon",
-    "test": "echo No test available"
+    "test": "echo No test available",
+    "watch": "webpack --mode=development --progress --colors --watch"
   },
   "dependencies": {
+    "@shopify/polaris": "^2.0.0",
     "cookie": "^0.3.1",
     "cookie-parser": "^1.4.3",
     "debug": "^3.1.0",
@@ -20,9 +23,20 @@
     "express-session": "^1.15.6",
     "nonce": "^1.0.4",
     "qs": "^6.5.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "unfetch": "^3.0.0",
     "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "prop-types": "^15.6.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
   }
 }
